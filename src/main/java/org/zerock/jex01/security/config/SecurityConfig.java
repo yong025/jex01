@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.zerock.jex01.security.handler.CustomLoginSuccessHandler;
-import org.zerock.jex01.security.mapper.MemberMapper;
 import org.zerock.jex01.security.service.CustomUserDetailsService;
 
 import javax.sql.DataSource;

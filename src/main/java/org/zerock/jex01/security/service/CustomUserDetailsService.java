@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.zerock.jex01.security.domain.Member;
+import org.zerock.jex01.security.dto.MemberDTO;
 import org.zerock.jex01.security.mapper.MemberMapper;
 
 
@@ -43,13 +44,15 @@ public class CustomUserDetailsService implements UserDetailsService {//<<로그�
 
         String[] authorities = member.getRoleList().stream().map(memberRole -> memberRole.getRole()).toArray(String[]:: new);
         // toArray(String[]:: new) 새로운 배열을 만들어준다.
-        User result = (User) User.builder()//다운캐스팅
-                .username(username)
-                .password(member.getMpw())
-                .accountExpired(false)//이 계정 만료 ?
-                .accountLocked(false) // 이 계정 잠긴 계정 ?
-                .authorities(authorities) //이 계정 권한은 ? 앞에 ROLE_를 붙여서 권한명시를 꼭 해줘야함.
-                .build();
+
+        User result = new MemberDTO(member);
+//        User result = (User) User.builder()//다운캐스팅
+//                .username(username)
+//                .password(member.getMpw())
+//                .accountExpired(false)//이 계정 만료 ?
+//                .accountLocked(false) // 이 계정 잠긴 계정 ?
+//                .authorities(authorities) //이 계정 권한은 ? 앞에 ROLE_를 붙여서 권한명시를 꼭 해줘야함.
+//                .build();
 
 
         return result; //반환은 userDetails 타입
