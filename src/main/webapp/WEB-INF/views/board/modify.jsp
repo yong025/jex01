@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/header.jsp" %>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -45,22 +45,30 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail10">BNO</label>
-                                    <input type="text" name="bno" class="form-control" id="exampleInputEmail10" placeholder="blank bno" value="<c:out value="${boardDTO.bno}"></c:out>" readonly>
+                                    <input type="text" name="bno" class="form-control" id="exampleInputEmail10"
+                                           placeholder="blank bno" value="<c:out value="${boardDTO.bno}"></c:out>"
+                                           readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Title</label>
-                                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="blank title" value="<c:out value="${boardDTO.title}"></c:out>">
+                                    <input type="text" name="title" class="form-control" id="exampleInputEmail1"
+                                           placeholder="blank title" value="<c:out value="${boardDTO.title}"></c:out>">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail2">Writer</label>
-                                    <input type="text" name="writer" class="form-control" id="exampleInputEmail2" placeholder="blank writer" value="<c:out value="${boardDTO.writer}"></c:out>" readonly>
+                                    <input type="text" name="writer" class="form-control" id="exampleInputEmail2"
+                                           placeholder="blank writer" value="<c:out value="${boardDTO.writer}"></c:out>"
+                                           readonly>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12"> <!-- 6은 절반 12는 전체 -->
                                         <!-- textarea -->
                                         <div class="form-group">
                                             <label>Textarea</label>
-                                            <textarea name="content" class="form-control" rows="3" placeholder="Enter ..."><c:out value="${boardDTO.content}"></c:out></textarea> <!-- textarea는 공백조심 -->
+                                            <textarea name="content" class="form-control" rows="3"
+                                                      placeholder="Enter ..."><c:out
+                                                    value="${boardDTO.content}"></c:out></textarea>
+                                            <!-- textarea는 공백조심 -->
                                         </div>
                                     </div>
 
@@ -83,7 +91,8 @@
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" name="uploadFiles" class="custom-file-input" id="exampleInputFile" multiple>
+                            <input type="file" name="uploadFiles" class="custom-file-input" id="exampleInputFile"
+                                   multiple>
                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                         </div>
                         <div class="input-group-append">
@@ -94,13 +103,13 @@
                     <!-- /.card -->
                     <div class="uploadResult">
                         <c:forEach items="${boardDTO.files}" var="attach">
-                            <div data-uuid="${attach.uuid}" data-filename="${attach.fileName}" data-uploadpath="${attach.uploadPath}" data-image="${attach.image}">
-                                <c:if test="${attach.image}">
-                                    <img src="/viewFile?file=${attach.getThumbnail()}">
-                                </c:if>
+                            <c:if test="${attach.image}">
+                                <div data-uuid="${attach.uuid}" data-filename="${attach.fileName}" data-uploadpath="${attach.uploadPath}" data-image="${attach.image}">
+                                <img src="/viewFile?file=${attach.getThumbnail()}">
                                 <span>${attach.fileName}</span>
                                 <button onclick="javascript:removeDiv(this)">X</button>
                             </div>
+                            </c:if>
 
                         </c:forEach>
 
@@ -123,7 +132,7 @@
     </c:if>
 </form>
 
-<%@include file="../includes/footer.jsp"%>
+<%@include file="../includes/footer.jsp" %>
 
 <script>
 
@@ -150,17 +159,17 @@
 
         actionForm.submit();
 
-    },false);
+    }, false);
 
     document.querySelector(".btnDel").addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        form.setAttribute("action","/board/remove")
+        form.setAttribute("action", "/board/remove")
         form.setAttribute("method", "post")
         form.submit();
 
-    },false);
+    }, false);
 
     document.querySelector(".btnMod").addEventListener("click", (e) => {
         e.preventDefault();
@@ -168,7 +177,7 @@
 
         const fileDivArr = uploadResultDiv.querySelectorAll("div")
 
-        if(fileDivArr && fileDivArr.length > 0){
+        if (fileDivArr && fileDivArr.length > 0) {
             let str = "";
             for (let i = 0; i < fileDivArr.length; i++) {
                 const target = fileDivArr[i]
@@ -186,11 +195,11 @@
             document.querySelector(".temp").innerHTML = str
         }//end if
 
-        form.setAttribute("action","/board/modify")
+        form.setAttribute("action", "/board/modify")
         form.setAttribute("method", "post")
         form.submit();
 
-    },false);
+    }, false);
 
 </script>
 
@@ -233,15 +242,11 @@
         })
 
 
-
     }, false)
 
-    function removeDiv(ele){
+    function removeDiv(ele) {
         ele.parentElement.remove()
     }
-
-
-
 
 
 </script>

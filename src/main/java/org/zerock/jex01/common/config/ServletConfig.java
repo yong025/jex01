@@ -4,6 +4,7 @@ package org.zerock.jex01.common.config;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -16,6 +17,7 @@ import org.zerock.jex01.common.converter.StringToLocalDateTimeConverter;
 @EnableWebMvc //configuration 설정 포함됨.
 @Import(BoardServletConfig.class) //로딩될때 BoardServletConfig도 같이 로딩하기 위해서 import
 @ComponentScan(basePackages = {"org.zerock.jex01.common.exception","org.zerock.jex01.common.controller"})
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ServletConfig implements WebMvcConfigurer {
     //이해 필요 코드
     @Override

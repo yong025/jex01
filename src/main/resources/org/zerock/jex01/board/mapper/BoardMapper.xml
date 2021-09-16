@@ -6,7 +6,7 @@
 
     <insert id="insert"> <!-- 원래는 resultType에 java.lang.String으로 적어야 하지만 통칭 string 으로 가능 -->
         insert into tbl_board (title,content,writer)
-        values(#{title},#{content},#{writer})
+        values(#{title},#{content},#{writer}) ON DUPLICATE KEY UPDATE title=#{title}, content=#{content},writer=#{writer}
 
         <selectKey order="AFTER" resultType="long" keyProperty="bno">
             select last_insert_id() <!-- 마지막으로 insert한 후 order에 맞게 insert한 숫자를 select함 -->
@@ -88,7 +88,7 @@
 
     <insert id="insertAttach">
         insert into tbl_attach (uuid, bno, path, filename, image)
-        values (#{uuid}, #{bno}, #{path}, #{fileName}, #{image})
+            values (#{uuid}, #{bno}, #{path}, #{fileName}, #{image})
     </insert>
 
     <delete id="deleteAttach">
